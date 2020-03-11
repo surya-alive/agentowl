@@ -1,0 +1,7 @@
+{
+  "name": "agentowl",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
