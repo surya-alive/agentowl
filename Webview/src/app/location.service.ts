@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class LocationService {
   options;
   trxUrl="https://kn28vl3hhl.execute-api.us-west-1.amazonaws.com/live/location";
 
-  constructor(public httpClient: HttpClient) {
+  constructor(public http: HttpClient) {
     
   }
 
@@ -21,7 +22,7 @@ export class LocationService {
   }
 
   getTransaction(data){
-  	return this.httpClient.post(this.trxUrl,data,this.setHeaderJson()).pipe(map(res =>  res.json()));
+  	return this.http.post(this.trxUrl,data,this.setHeaderJson()).pipe(map((res: Response) =>  res.json()));
   }
 
 }
