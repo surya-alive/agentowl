@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "importType": "LEX",
+    "importFormat": "JSON"
+  },
+  "resource": {
+    "name": "agentOwl",
+    "version": "12",
+    "intents": [
+      {
+        "name": "gettingLocation",
+        "version": "12",
+        "fulfillmentActivity": {
+          "codeHook": {
+            "uri": "arn:aws:lambda:us-west-2:680128005104:function:fullfillmentGettingLocation",
+            "messageVersion": "1.0"
+          },
+          "type": "CodeHook"
+        },
+        "sampleUtterances": [
+          "get started",
+          "please deliver our packages",
+          "could you please deliver our packages",
+          "please deliver my packages",
+          "I'd like to send goods"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.AT_CITY",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Where is delivery location, [userName]?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "name": "deliveryPlace"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.AT_CITY",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Click below to pinpoint your delivery location"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 4,
+            "name": "pinLocation"
+          }
+        ],
+        "dialogCodeHook": {
+          "uri": "arn:aws:lambda:us-west-2:680128005104:function:codeHookIntentLexGettingLocation",
+          "messageVersion": "1.0"
+        }
+      }
+    ],
+    "voiceId": "Justin",
+    "childDirected": false,
+    "locale": "en-US",
+    "idleSessionTTLInSeconds": 900,
+    "clarificationPrompt": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, I couldn't get that"
+        },
+        {
+          "contentType": "PlainText",
+          "content": "Could you repeat that please?"
+        }
+      ],
+      "maxAttempts": 3
+    },
+    "abortStatement": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, I could not understand. Goodbye."
+        }
+      ]
+    },
+    "detectSentiment": false
+  }
+}

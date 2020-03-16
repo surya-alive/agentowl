@@ -1,11 +1,16 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary" >
-    <ion-title>
-      Blank
+  <ion-toolbar color="secondary" >
+    <ion-title text-center>
+      <ion-spinner name="dots" [hidden]="!isLoadPage"></ion-spinner>
+      <span [hidden]="!showTittle">{{titlePage}}</span>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div #map id="map"></div>
+  	<div #map id="map"></div>
+    	<ion-button fill="solid" [disabled]="!showTittle" [hidden]="!isFound" color="tertiary" (click)="done()" shape="round" expand="block">
+      		Set Location
+      	<ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+   	</ion-button>
 </ion-content>

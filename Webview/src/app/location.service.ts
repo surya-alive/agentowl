@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class LocationService {
   }
 
   getTransaction(data){
-  	return this.http.post(this.trxUrl,data,this.setHeaderJson()).pipe(map((res: Response) =>  res.json()));
+  	return this.http.post<any>(this.trxUrl,data,this.setHeaderJson());
   }
 
 }
